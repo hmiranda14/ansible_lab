@@ -2,8 +2,19 @@
 - hosts: all
   become: yes
   tasks:
+
+    - name: upadte repository index
+      ansible.builtin.apt:
+       update_cache: yes
+
     - name: Install Smokeping
       apt:
         name: smokeping
-        state: present
+        state: latest
+        update_cache: yes
+
+    - name: install support for phpo
+      apt:
+        name: libapache2-mod-php
+        state: latest
         update_cache: yes

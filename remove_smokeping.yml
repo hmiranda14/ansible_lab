@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+
+    - name: Update repository index
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Remove Smokeping
+      ansible.builtin.apt:
+        name: smokeping
+        state: absent
+
+    - name: Remove PHP support
+      ansible.builtin.apt:
+        name: libapache2-mod-php
+        state: absent
